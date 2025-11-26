@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code & Chill - 轉職路上的溫柔陪伴</title>
+    <meta
+      name="description"
+      content="Code & Chill 是為在職轉職者設計的療癒學習小工具，提供每日鼓勵語句與學習動力支持，陪伴你在轉職路上保持正向心態與持續進步。"
+    />
+
+    <style>
+      /* CSS:BASE-START */
+      /* 全站基礎設定 */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+        line-height: 1.7;
+        color: #5a4a42;
+        background-color: #faf9f6;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: #fcb69f;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      /* 導覽列 */
+      .site-header {
+        position: sticky;
+        top: 0;
+        background-color: rgba(250, 249, 246, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #f0e6dc;
+        z-index: 100;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(252, 182, 159, 0.1);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .nav-brand {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fcb69f;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-link {
+        color: #5a4a42;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      .nav-link:hover {
+        color: #fcb69f;
+      }
+
+      /* Footer */
+      .site-footer {
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        padding: 2.5rem 0;
+        text-align: center;
+        color: #5a4a42;
+        font-size: 0.9rem;
+      }
+
+      .site-footer p {
+        margin: 0.5rem 0;
+      }
+      /* CSS:BASE-END */
+
+      /* CSS:HERO-START */
+      .section-hero {
+        background: linear-gradient(
+          135deg,
+          #fff5f7 0%,
+          #ffecd2 50%,
+          #fcb69f 100%
+        );
+        padding: 80px 0;
+        text-align: center;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .hero-content h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        color: #5a4a42;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: #8b7566;
+        font-weight: 500;
+      }
+
+      .hero-content p {
+        font-size: 1.05rem;
+        margin-bottom: 1.2rem;
+        color: #5a4a42;
+        line-height: 1.8;
+      }
+
+      .hero-placeholder {
+        margin-top: 2.5rem;
+        font-size: 0.9rem;
+        color: #a8a4ce;
+        font-style: italic;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 1rem;
+        border-radius: 12px;
+        border-left: 3px solid #fcb69f;
+      }
+      /* CSS:HERO-END */
+
+      /* CSS:CARD-DISPLAY-START */
+      .section-card-display {
+        background-color: #faf9f6;
+        padding: 80px 0;
+      }
+
+      .card-main {
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(252, 182, 159, 0.3);
+        max-width: 500px;
+        margin: 0 auto;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card-main:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 70px rgba(252, 182, 159, 0.4);
+      }
+
+      .card-header {
+        background: rgba(255, 255, 255, 0.3);
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .card-title {
+        font-size: 1.6rem;
+        margin: 0;
+        color: #5a4a42;
+        font-weight: 600;
+      }
+
+      .card-body {
+        padding: 2.5rem 2rem;
+        text-align: center;
+      }
+
+      .card-quote {
+        font-size: 1.3rem;
+        line-height: 1.8;
+        color: #5a4a42;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        white-space: pre-line;
+      }
+
+      .card-tip {
+        font-size: 1rem;
+        color: #8b7566;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 1rem;
+        border-radius: 12px;
+        margin: 0;
+      }
+
+      .card-footer {
+        padding: 1.5rem 2rem 2rem;
+        text-align: center;
+      }
+
+      .card-placeholder {
+        font-size: 0.9rem;
+        color: #a8a4ce;
+        font-style: italic;
+        margin: 0;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 0.8rem;
+        border-radius: 10px;
+      }
+      /* CSS:CARD-DISPLAY-END */
+
+      /* CSS:MODE-SELECTOR-START */
+      .section-mode-selector {
+        background-color: #fff5f7;
+        padding: 80px 0;
+      }
+
+      .mode-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .mode-item {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(168, 164, 206, 0.15);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .mode-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(168, 164, 206, 0.25);
+        border-color: #a8a4ce;
+      }
+
+      .mode-rest {
+        border-left: 4px solid #a8edea;
+      }
+
+      .mode-micro {
+        border-left: 4px solid #fcb69f;
+      }
+
+      .mode-focus {
+        border-left: 4px solid #ff9a9e;
+      }
+
+      .mode-icon {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 0.8rem;
+      }
+
+      .mode-name {
+        font-size: 1.4rem;
+        margin: 0 0 0.8rem 0;
+        color: #5a4a42;
+        font-weight: 600;
+      }
+
+      .mode-desc {
+        font-size: 1rem;
+        color: #8b7566;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .mode-placeholder {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #a8a4ce;
+        font-style: italic;
+        margin-top: 2rem;
+        background: rgba(168, 164, 206, 0.1);
+        padding: 1rem;
+        border-radius: 12px;
+      }
+      /* CSS:MODE-SELECTOR-END */
+
+      /* CSS:ABOUT-TOOL-START */
+      .section-about-tool {
+        background-color: #faf9f6;
+        padding: 80px 0;
+      }
+
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .about-content p {
+        font-size: 1.05rem;
+        color: #5a4a42;
+        margin-bottom: 1.2rem;
+        line-height: 1.8;
+      }
+
+      .about-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+      }
+
+      .about-content li {
+        font-size: 1.05rem;
+        color: #5a4a42;
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.7;
+      }
+
+      .about-content li::before {
+        content: "✨";
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+      }
+
+      .about-image {
+        max-width: 600px;
+        margin: 2.5rem auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(252, 182, 159, 0.3);
+      }
+
+      .about-placeholder {
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: #a8a4ce;
+        font-style: italic;
+        background: rgba(168, 164, 206, 0.1);
+        padding: 1rem;
+        border-radius: 12px;
+        border-left: 3px solid #fcb69f;
+      }
+      /* CSS:ABOUT-TOOL-END */
+
+      /* CSS:RWD-START */
+      /* 平板以上尺寸 */
+      @media (min-width: 768px) {
+        .section {
+          padding: 100px 0;
+        }
+
+        .section-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-content h1 {
+          font-size: 3.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.5rem;
+        }
+
+        .nav-links {
+          gap: 2rem;
+        }
+
+        .mode-list {
+          flex-direction: row;
+          justify-content: center;
+        }
+
+        .mode-item {
+          flex: 1;
+          max-width: 300px;
+        }
+
+        .card-main {
+          max-width: 550px;
+        }
+
+        .card-quote {
+          font-size: 1.4rem;
+        }
+      }
+
+      /* 桌面尺寸 */
+      @media (min-width: 1024px) {
+        .container {
+          padding: 0 40px;
+        }
+
+        .hero-content h1 {
+          font-size: 4rem;
+        }
+
+        .section-card-display {
+          padding: 120px 0;
+        }
+
+        .card-main {
+          max-width: 600px;
+        }
+      }
+
+      /* 確保小螢幕不會水平捲動 */
+      @media (max-width: 320px) {
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .nav-brand {
+          font-size: 1.2rem;
+        }
+
+        .mode-item {
+          padding: 1.5rem;
+        }
+      }
+      /* CSS:RWD-END */
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- 導覽列 -->
+      <header class="site-header">
+        <nav class="nav container">
+          <a href="#hero" class="nav-brand">Code & Chill</a>
+          <div class="nav-links">
+            <a href="#hero" class="nav-link">首頁</a>
+            <a href="#card-display" class="nav-link">每日卡片</a>
+            <a href="#mode-selector" class="nav-link">模式選擇</a>
+            <a href="#about-tool" class="nav-link">關於工具</a>
+          </div>
+        </nav>
+      </header>
+
+      <!-- 主要內容區 -->
+      <main>
+        <!-- SECTION:HERO-START -->
+        <section id="hero" class="section section-hero">
+          <div class="container">
+            <div class="hero-content">
+              <h1>Code & Chill</h1>
+              <p class="hero-subtitle">轉職路上的溫柔陪伴</p>
+              <p>每天給自己一點療癒與鼓勵，在學習前端的路上不孤單。</p>
+              <p>
+                專為在職轉職者設計的學習動力小工具，陪伴你保持正向心態，以自己的節奏持續前進。
+              </p>
+              <div class="hero-placeholder">
+                <p>
+                  📝 開發者提示：之後會用 Section SDD 的 Prompt
+                  產生正式文案與視覺設計，再把整個 section
+                  貼回來取代這一區。請將新的 section 程式碼整段貼在
+                  SECTION:HERO-START 和 SECTION:HERO-END 兩個註解中間。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- SECTION:HERO-END -->
+
+        <!-- SECTION:CARD-DISPLAY-START -->
+        <section id="card-display" class="section section-card-display">
+          <div class="container">
+            <div class="card-main">
+              <div class="card-header">
+                <h2 class="card-title">🌙 今日溫柔提醒</h2>
+              </div>
+              <div class="card-body">
+                <p class="card-quote">今天的疲憊是真實的， 允許自己慢下來。</p>
+                <p class="card-tip">💡 小提示：休息也是進步的一部分</p>
+              </div>
+              <div class="card-footer">
+                <p class="card-placeholder">
+                  （這裡未來會放「換一句」按鈕，Phase 1 階段純 CSS 無法互動）
+                </p>
+              </div>
+            </div>
+            <div
+              class="hero-placeholder"
+              style="
+                margin-top: 3rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            >
+              <p>
+                📝 開發者提示：這是工具的核心區塊，展示療癒卡片。之後會用
+                Section SDD 加入完整卡片設計與互動邏輯（需
+                JavaScript）。請將新的 section 程式碼整段貼在
+                SECTION:CARD-DISPLAY-START 和 SECTION:CARD-DISPLAY-END
+                兩個註解中間。
+              </p>
+            </div>
+          </div>
+        </section>
+        <!-- SECTION:CARD-DISPLAY-END -->
+
+        <!-- SECTION:MODE-SELECTOR-START -->
+        <section id="mode-selector" class="section section-mode-selector">
+          <div class="container">
+            <h2 class="section-title">選擇你的模式</h2>
+            <div class="mode-list">
+              <div class="mode-item mode-rest">
+                <span class="mode-icon">🌙</span>
+                <h3 class="mode-name">休息模式</h3>
+                <p class="mode-desc">
+                  純療癒語句，允許今天不學習。給自己完全放鬆的空間，充電後再出發。
+                </p>
+              </div>
+              <div class="mode-item mode-micro">
+                <span class="mode-icon">🌱</span>
+                <h3 class="mode-name">微學習模式</h3>
+                <p class="mode-desc">
+                  5-10 分鐘小任務，輕鬆學習。每天一點點，累積成大改變。
+                </p>
+              </div>
+              <div class="mode-item mode-focus">
+                <span class="mode-icon">🚀</span>
+                <h3 class="mode-name">衝刺模式</h3>
+                <p class="mode-desc">
+                  完整學習計畫，全力以赴。狀態好的時候，盡情享受學習的樂趣。
+                </p>
+              </div>
+            </div>
+            <p class="mode-placeholder">
+              （Phase 1 階段無法切換模式，之後會用 Section SDD 加入互動功能）
+            </p>
+            <div class="hero-placeholder" style="margin-top: 2rem">
+              <p>
+                📝 開發者提示：展示三種模式的卡片樣式。Phase 1
+                階段純視覺，無法點擊切換。之後會用 Section SDD 產生新的
+                section，請將新的 section 程式碼整段貼在
+                SECTION:MODE-SELECTOR-START 和 SECTION:MODE-SELECTOR-END
+                兩個註解中間。
+              </p>
+            </div>
+          </div>
+        </section>
+        <!-- SECTION:MODE-SELECTOR-END -->
+
+        <!-- SECTION:ABOUT-TOOL-START -->
+        <section
+          id="about-tool"
+          class="section section-about-tool"
+          aria-labelledby="about-tool-heading"
+        >
+          <div class="container">
+            <h2 id="about-tool-heading" class="section-title">
+              關於 Code & Chill
+            </h2>
+            <div class="about-content">
+              <div class="about-image">
+                <img
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
+                  alt="溫暖的咖啡與筆電工作場景，營造舒適的學習氛圍"
+                  loading="lazy"
+                />
+              </div>
+              <p>這裡目前是 About Tool 區的占位內容，未來會介紹：</p>
+              <ul>
+                <li>為什麼設計這個工具：理解在職轉職者的疲憊與內耗</li>
+                <li>適合哪些使用者：正在學習前端、準備轉職的你</li>
+                <li>如何使用：每天打開，選擇模式，獲得療癒與動力</li>
+                <li>預期效果：建立健康的學習節奏，減少焦慮，持續進步</li>
+              </ul>
+              <p class="about-placeholder">
+                📝 開發者提示：之後會用 Section SDD 的 Prompt
+                產生正式內容，請把新的 section 程式碼整段貼在
+                SECTION:ABOUT-TOOL-START 和 SECTION:ABOUT-TOOL-END
+                兩個註解中間，完全取代這一區。
+              </p>
+            </div>
+          </div>
+        </section>
+        <!-- SECTION:ABOUT-TOOL-END -->
+      </main>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="container">
+          <p>&copy; 2024 Code & Chill. 用溫柔陪伴每一位轉職者。</p>
+          <p style="margin-top: 0.8rem; font-size: 0.85rem">
+            Made with ❤️ for learners
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
